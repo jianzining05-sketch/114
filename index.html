@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>出門前的空氣檢查 | 高中生期末專案成果發表</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Noto Sans TC & Quicksand for cute rounding -->
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Comfortaa', 'Noto Sans TC', 'sans-serif'],
+                    },
+                    colors: {
+                        cream: '#FFFDF6',
+                        coffee: '#4A3E3D',
+                        skyBlue: '#BAE1FF',
+                        mint: '#BFFCC6',
+                        peach: '#FFC6FF',
+                        sun: '#FFD23F',
+                        cloudy: '#CBD5E1',
+                        apricot: '#FFDFBA'
+                    },
+                    boxShadow: {
+                        kawaii: '6px 6px 0px 0px #4A3E3D',
+                        kawaiiSm: '3px 3px 0px 0px #4A3E3D',
+                        kawaiiActive: '2px 2px 0px 0px #4A3E3D'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom Keyframe Animations for Japanese Cute Style Background */
+        body {
+            font-family: 'Comfortaa', 'Noto Sans TC', sans-serif;
+            background-color: #FFFDF6;
+            color: #4A3E3D;
+        }
+
+        /* Float animation for clouds */
+        @keyframes float-cloud-left {
+            0% { transform: translateX(-10%); }
+            100% { transform: translateX(110vw); }
+        }
+        @keyframes float-cloud-right {
+            0% { transform: translateX(110vw); }
+            100% { transform: translateX(-10%); }
+        }
+        .cloud-left {
+            animation: float-cloud-left 45s linear infinite;
+        }
+        .cloud-right {
+            animation: float-cloud-right 55s linear infinite;
+        }
+
+        /* Wind sway animation for grass and leaves */
+        @keyframes sway {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(4deg); }
+        }
+        .sway-element {
+            transform-origin: bottom center;
+            animation: sway 4s ease-in-out infinite;
+        }
+
+        /* Drifting autumn/cherry blossom leaves */
+        @keyframes drift {
+            0% { transform: translateY(-10px) translateX(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(400px) translateX(150px) rotate(360deg); opacity: 0; }
+        }
+        .leaf {
+            position: absolute;
+            animation: drift 8s linear infinite;
+        }
+
+        /* Mascot idle breathing/bouncing */
+        @keyframes bounce-cute {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        .mascot-bounce {
+            animation: bounce-cute 2.5s ease-in-out infinite;
+        }
+
+        /* Retro game screen scanlines */
+        .scanlines {
+            background: linear-gradient(
+                rgba(18, 16, 16, 0) 50%, 
+                rgba(0, 0, 0, 0.08) 50%
+            );
+            background-size: 100% 4px;
+        }
+
+        /* Custom scrollbar for cute look */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FFFDF6;
+            border-left: 3px solid #4A3E3D;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #FFDFBA;
+            border: 3px solid #4A3E3D;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden selection:bg-peach selection:text-coffee">
+
+    <!-- Cute Header -->
+    <header class="sticky top-0 z-50 bg-[#FFFDF6] border-b-4 border-coffee px-4 py-3 shadow-md">
+        <div class="max-w-6xl mx-auto flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="bg-peach p-2 rounded-full border-2 border-coffee shadow-kawaiiSm">
+                    <span class="text-2xl">☁️</span>
+                </div>
+                <div>
+                    <h1 class="font-black text-lg md:text-xl tracking-wide flex items-center">
+                        出門前的空氣檢查 <span class="hidden md:inline-block ml-2 text-xs bg-skyBlue text-coffee border border-coffee px-2 py-0.5 rounded-full">高二第3組期末專案</span>
+                    </h1>
+                </div>
+            </div>
+            
+            <nav class="hidden md:flex items-center space-x-6 font-bold text-sm">
+                <a href="#about" class="hover:text-peach transition-colors">🎯 專案緣起</a>
+                <a href="#features" class="hover:text-peach transition-colors">✨ 功能特色</a>
+                <a href="#executable" class="bg-apricot px-4 py-2 rounded-xl border-2 border-coffee shadow-kawaiiSm hover:translate-y-0.5 hover:shadow-kawaiiActive transition-all">🚀 啟動模擬器</a>
+                <a href="#team" class="hover:text-peach transition-colors">🏫 專案團隊</a>
+            </nav>
+            
+            <a href="#executable" class="md:hidden bg-apricot px-3 py-1.5 rounded-xl border-2 border-coffee text-xs font-bold shadow-kawaiiSm">
+                ⚡ 執行模擬
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero & Dynamic Outdoor Environment -->
+    <section class="relative min-h-[90vh] bg-gradient-to-b from-[#E3F2FD] to-[#E8F5E9] border-b-4 border-coffee overflow-hidden flex flex-col justify-between py-10 px-4">
+        
+        <!-- Floating Clouds Background -->
+        <div class="absolute inset-0 pointer-events-none z-0">
+            <!-- Cloud 1 -->
+            <div class="cloud-left absolute top-12 left-[-150px] opacity-80">
+                <svg width="120" height="60" viewBox="0 0 120 60" fill="white">
+                    <path d="M20,40 A15,15 0 0,1 35,25 A25,25 0 0,1 75,20 A20,20 0 0,1 100,35 A15,15 0 0,1 95,50 L25,50 A15,15 0 0,1 20,40 Z" />
+                </svg>
+            </div>
+            <!-- Cloud 2 -->
+            <div class="cloud-right absolute top-36 right-[-200px] opacity-90">
+                <svg width="180" height="90" viewBox="0 0 120 60" fill="white">
+                    <path d="M20,40 A15,15 0 0,1 35,25 A25,25 0 0,1 75,20 A20,20 0 0,1 100,35 A15,15 0 0,1 95,50 L25,50 A15,15 0 0,1 20,40 Z" />
+                </svg>
+            </div>
+            <!-- Cloud 3 -->
+            <div class="cloud-left absolute top-72 left-[-100px] opacity-60" style="animation-duration: 65s;">
+                <svg width="150" height="75" viewBox="0 0 120 60" fill="white">
+                    <path d="M20,40 A15,15 0 0,1 35,25 A25,25 0 0,1 75,20 A20,20 0 0,1 100,35 A15,15 0 0,1 95,50 L25,50 A15,15 0 0,1 20,40 Z" />
+                </svg>
+            </div>
+        </div>
+
+        <!-- Drifting Leaves / Flowers -->
+        <div class="absolute inset-0 pointer-events-none z-10" id="leaf-container">
+            <!-- Simulated via simple dynamic SVGs below in JS or static CSS here -->
+            <div class="leaf text-pink-300" style="top: 20%; left: 10%; animation-delay: 0s; font-size: 24px;">🌸</div>
+            <div class="leaf text-green-300" style="top: 10%; left: 40%; animation-delay: 2s; font-size: 20px;">🍃</div>
+            <div class="leaf text-pink-300" style="top: 30%; left: 70%; animation-delay: 4.5s; font-size: 22px;">🌸</div>
+            <div class="leaf text-green-300" style="top: 5%; left: 85%; animation-delay: 6s; font-size: 18px;">🍃</div>
+        </div>
+
+        <!-- Hero Content Header -->
+        <div class="max-w-4xl mx-auto text-center z-10 my-auto mt-8 px-2">
+            <span class="inline-block bg-white text-coffee text-xs md:text-sm font-bold px-4 py-1.5 rounded-full border-2 border-coffee shadow-kawaiiSm mb-6 transform -rotate-1">
+                🎒 114 學年度 高中多元選修 / 自主學習期末專題發表
+            </span>
+            
+            <h2 class="text-4xl md:text-6xl font-black leading-tight mb-6 drop-shadow-sm text-slate-800">
+                出門前的<span class="underline decoration-peach decoration-wavy decoration-2 bg-yellow-100/60 px-2 rounded-lg">空氣檢查</span>！
+            </h2>
+            
+            <p class="text-base md:text-lg font-bold max-w-xl mx-auto text-slate-600 mb-8 leading-relaxed">
+                「今天到底需不需要戴口罩？要帶傘嗎？紫外線會不會讓我曬黑？」<br>
+                專為高中生與通勤族設計的超萌智慧出行分析器，一鍵為你把關出門裝備！
+            </p>
+
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a href="#executable" class="w-full sm:w-auto px-8 py-4 bg-peach text-coffee font-black rounded-2xl border-4 border-coffee shadow-kawaii hover:translate-x-1 hover:translate-y-1 hover:shadow-kawaiiActive transition-all text-lg flex items-center justify-center space-x-2">
+                    <span>🚀 啟動專案執行檔</span>
+                    <i class="fa-solid fa-play"></i>
+                </a>
+                <a href="#about" class="w-full sm:w-auto px-8 py-4 bg-white text-coffee font-black rounded-2xl border-4 border-coffee shadow-kawaii hover:translate-x-1 hover:translate-y-1 hover:shadow-kawaiiActive transition-all text-lg flex items-center justify-center space-x-2">
+                    <span>💡 看看專案介紹</span>
+                    <i class="fa-solid fa-circle-info"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Foreground Ground & Mascot Swaying Elements -->
+        <div class="w-full max-w-5xl mx-auto relative h-[180px] md:h-[240px] z-20 mt-6 flex justify-between items-end">
+            
+            <!-- Left Side Mascot (Pup/Puffy the dog) packing school bag -->
+            <div class="absolute left-4 bottom-0 w-32 md:w-48 mascot-bounce flex flex-col items-center select-none">
+                <!-- Dialogue bubble -->
+                <div class="bg-white text-xs md:text-sm font-black border-2 border-coffee p-2.5 rounded-2xl shadow-kawaiiSm mb-3 relative max-w-[150px] text-center">
+                    今天出門該帶什麼呢？
+                    <!-- speech tail -->
+                    <div class="absolute bottom-[-10px] left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-8 border-l-transparent border-r-8 border-r-transparent border-t-8 border-t-coffee"></div>
+                    <div class="absolute bottom-[-7px] left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-[7px] border-l-transparent border-r-[7px] border-r-transparent border-t-[7px] border-t-white"></div>
+                </div>
+                <!-- Cute cloud-puppy SVGs -->
+                <svg width="100" height="90" viewBox="0 0 100 90" fill="none" class="drop-shadow-sm">
+                    <!-- Dog Body (Fluffy) -->
+                    <ellipse cx="50" cy="55" rx="35" ry="28" fill="white" stroke="#4A3E3D" stroke-width="4"/>
+                    <!-- Dog Head -->
+                    <circle cx="50" cy="35" r="22" fill="white" stroke="#4A3E3D" stroke-width="4"/>
+                    <!-- Ears -->
+                    <ellipse cx="28" cy="25" rx="8" ry="12" fill="#FFC6FF" stroke="#4A3E3D" stroke-width="4"/>
+                    <ellipse cx="72" cy="25" rx="8" ry="12" fill="#FFC6FF" stroke="#4A3E3D" stroke-width="4"/>
+                    <!-- Eyes -->
+                    <circle cx="43" cy="32" r="3" fill="#4A3E3D"/>
+                    <circle cx="57" cy="32" r="3" fill="#4A3E3D"/>
+                    <!-- Blush -->
+                    <ellipse cx="38" cy="38" rx="4" ry="2.5" fill="#FFAAA6"/>
+                    <ellipse cx="62" cy="38" rx="4" ry="2.5" fill="#FFAAA6"/>
+                    <!-- Nose & Mouth -->
+                    <polygon points="50,37 47,34 53,34" fill="#4A3E3D"/>
+                    <path d="M48,42 Q50,44 52,42" stroke="#4A3E3D" stroke-width="2" stroke-linecap="round"/>
+                    <!-- Schoolbag -->
+                    <rect x="25" y="60" width="16" height="20" rx="4" fill="#FFADAD" stroke="#4A3E3D" stroke-width="3"/>
+                    <rect x="22" y="64" width="6" height="12" rx="1" fill="#FF8585"/>
+                    <!-- Paws -->
+                    <circle cx="35" cy="80" r="7" fill="white" stroke="#4A3E3D" stroke-width="3"/>
+                    <circle cx="65" cy="80" r="7" fill="white" stroke="#4A3E3D" stroke-width="3"/>
+                </svg>
+            </div>
+
+            <!-- Right Side Interactive School Gate / Traffic sign -->
+            <div class="absolute right-4 bottom-0 w-32 md:w-44 sway-element flex flex-col items-center">
+                <!-- Cute Traffic Sign -->
+                <svg width="60" height="120" viewBox="0 0 60 120" fill="none">
+                    <!-- Pole -->
+                    <rect x="28" y="40" width="4" height="80" fill="#4A3E3D"/>
+                    <!-- Yellow Sign Base -->
+                    <rect x="10" y="5" width="40" height="40" rx="8" fill="#FFEBB7" stroke="#4A3E3D" stroke-width="4"/>
+                    <!-- Cute Face on sign -->
+                    <circle cx="23" cy="20" r="2" fill="#4A3E3D"/>
+                    <circle cx="37" cy="20" r="2" fill="#4A3E3D"/>
+                    <path d="M26,28 Q30,32 34,28" stroke="#4A3E3D" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="18" cy="24" r="1.5" fill="#FF8585"/>
+                    <circle cx="42" cy="24" r="1.5" fill="#FF8585"/>
+                    <!-- Cloud shape on sign -->
+                    <path d="M15,35 Q18,31 22,33 Q25,29 28,32 Q32,30 35,34 Q40,35 40,38" stroke="#4A3E3D" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </div>
+
+            <!-- Cute Grass Ground Layer SVGs -->
+            <div class="w-full h-8 bg-emerald-300 rounded-t-2xl border-t-4 border-coffee absolute bottom-0 left-0"></div>
+        </div>
+    </section>
+
+    <!-- About Project Section -->
+    <section id="about" class="py-20 px-4 bg-cream border-b-4 border-coffee">
+        <div class="max-w-5xl mx-auto">
+            
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <span class="text-3xl md:text-4xl">🎯</span>
+                <h3 class="text-3xl md:text-5xl font-black mt-3">主題介紹與研究緣起</h3>
+                <div class="w-24 h-2 bg-peach mx-auto mt-4 rounded-full border border-coffee"></div>
+            </div>
+
+            <!-- Cute Cards Grid -->
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <!-- Motivation Card -->
+                <div class="bg-white p-8 rounded-3xl border-4 border-coffee shadow-kawaii">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <span class="text-4xl">🎒</span>
+                        <h4 class="text-2xl font-black">為什麼要做這個？</h4>
+                    </div>
+                    <p class="font-bold leading-relaxed text-slate-700 mb-4">
+                        身為高中通勤族，每天早上趕公車、趕捷運就像打仗一樣！我們發現，很多同學（包括我們自己）常常因為沒注意當天的空氣品質，一出校門就開始瘋狂打噴嚏；或者是忘了擦防曬、沒帶雨傘，導致整天心情都黏糊糊的。
+                    </p>
+                    <p class="font-bold leading-relaxed text-slate-700">
+                        因此，我們決定結合學校所學的資訊科技，打造一款<span class="text-pink-500">「一秒即懂、畫風超萌」</span>的空氣檢查軟體，為全校師生的健康生活與每日出行作最佳的貼心診斷。
+                    </p>
+                </div>
+
+                <!-- Research Core Card -->
+                <div class="bg-white p-8 rounded-3xl border-4 border-coffee shadow-kawaii">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <span class="text-4xl">💡</span>
+                        <h4 class="text-2xl font-black">我們研究的核心</h4>
+                    </div>
+                    <ul class="space-y-4 font-bold text-slate-700">
+                        <li class="flex items-start">
+                            <span class="text-emerald-500 mr-2">✔</span>
+                            <span><strong>即時空氣指標 (AQI) 判讀：</strong><br>細緻解析 PM2.5 與 PM10 對學生呼吸道的潛在風險。</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-emerald-500 mr-2">✔</span>
+                            <span><strong>多維度天氣矩陣推薦：</strong><br>整合紫外線 (UV) 指數、降雨機率與氣溫，產出視覺化的最佳防護穿搭。</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-emerald-500 mr-2">✔</span>
+                            <span><strong>日系減壓介面設計：</strong><br>用最療癒的色彩與吉祥物，降低冷冰冰數據所帶來的通勤焦慮。</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Flowchart / Methodology Section -->
+            <div class="bg-yellow-50/60 p-6 md:p-10 rounded-3xl border-4 border-coffee shadow-kawaii">
+                <h4 class="text-2xl font-black text-center mb-8">🛠️ 專案執行與判斷邏輯流程</h4>
+                
+                <!-- Graphic Flowchart -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 items-center text-center">
+                    
+                    <div class="bg-white p-4 rounded-2xl border-2 border-coffee shadow-kawaiiSm relative">
+                        <div class="text-3xl mb-2">☁️</div>
+                        <h5 class="font-black text-base mb-1">Step 1. 數據獲取</h5>
+                        <p class="text-xs font-bold text-slate-500">定時撈取環境監測與氣象站即時 API 資訊。</p>
+                        <!-- Arrow pointing right (md) / down (sm) -->
+                        <div class="hidden md:block absolute right-[-20px] top-1/2 transform -translate-y-1/2 text-coffee text-xl z-20">➜</div>
+                        <div class="md:hidden text-center text-coffee text-xl my-2">▼</div>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-2xl border-2 border-coffee shadow-kawaiiSm relative">
+                        <div class="text-3xl mb-2">🧠</div>
+                        <h5 class="font-black text-base mb-1">Step 2. 核心大腦分析</h5>
+                        <p class="text-xs font-bold text-slate-500">演算系統分級 AQI 與 UV 等級，判斷危險度。</p>
+                        <div class="hidden md:block absolute right-[-20px] top-1/2 transform -translate-y-1/2 text-coffee text-xl z-20">➜</div>
+                        <div class="md:hidden text-center text-coffee text-xl my-2">▼</div>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-2xl border-2 border-coffee shadow-kawaiiSm relative">
+                        <div class="text-3xl mb-2">🎒</div>
+                        <h5 class="font-black text-base mb-1">Step 3. 智慧穿搭推薦</h5>
+                        <p class="text-xs font-bold text-slate-500">映射出對應的出行防護裝備（口罩、雨傘、太陽眼鏡）。</p>
+                        <div class="hidden md:block absolute right-[-20px] top-1/2 transform -translate-y-1/2 text-coffee text-xl z-20">➜</div>
+                        <div class="md:hidden text-center text-coffee text-xl my-2">▼</div>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-2xl border-2 border-coffee shadow-kawaiiSm">
+                        <div class="text-3xl mb-2">🐶</div>
+                        <h5 class="font-black text-base mb-1">Step 4. 療癒生成輸出</h5>
+                        <p class="text-xs font-bold text-slate-500">吉祥物「澎澎」改變狀態，提供一鍵式貼心建議。</p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Features Highlight Grid -->
+    <section id="features" class="py-20 px-4 bg-[#F2F9F9] border-b-4 border-coffee">
+        <div class="max-w-5xl mx-auto">
+            
+            <div class="text-center mb-16">
+                <span class="text-3xl md:text-4xl">✨</span>
+                <h3 class="text-3xl md:text-5xl font-black mt-3">專案四大特色</h3>
+                <div class="w-24 h-2 bg-mint mx-auto mt-4 rounded-full border border-coffee"></div>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-6">
+                <!-- Feature 1 -->
+                <div class="bg-white p-6 rounded-2xl border-2 border-coffee shadow-kawaiiSm text-center">
+                    <div class="w-16 h-16 bg-skyBlue rounded-full flex items-center justify-center mx-auto border-2 border-coffee mb-4">
+                        <i class="fa-solid fa-wind text-2xl"></i>
+                    </div>
+                    <h4 class="font-black text-lg mb-2">一目了然的空氣計</h4>
+                    <p class="text-sm font-bold text-slate-600">利用生動的情緒表情取代枯燥數據，讓小學生也能看懂空氣品質。</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="bg-white p-6 rounded-2xl border-2 border-coffee shadow-kawaiiSm text-center">
+                    <div class="w-16 h-16 bg-peach rounded-full flex items-center justify-center mx-auto border-2 border-coffee mb-4">
+                        <i class="fa-solid fa-shirt text-2xl"></i>
+                    </div>
+                    <h4 class="font-black text-lg mb-2">動態推薦穿搭</h4>
+                    <p class="text-sm font-bold text-slate-600">紫外線超標、降雨機率高時，提供趣味對比穿搭插圖，保證不踩雷。</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="bg-white p-6 rounded-2xl border-2 border-coffee shadow-kawaiiSm text-center">
+                    <div class="w-16 h-16 bg-apricot rounded-full flex items-center justify-center mx-auto border-2 border-coffee mb-4">
+                        <i class="fa-solid fa-gamepad text-2xl"></i>
+                    </div>
+                    <h4 class="font-black text-lg mb-2">互動式專案模擬</h4>
+                    <p class="text-sm font-bold text-slate-600">內建即時參數控制台，使用者可以自定義任何劇烈天氣進行模擬測試。</p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="bg-white p-6 rounded-2xl border-2 border-coffee shadow-kawaiiSm text-center">
+                    <div class="w-16 h-16 bg-mint rounded-full flex items-center justify-center mx-auto border-2 border-coffee mb-4">
+                        <i class="fa-solid fa-bell text-2xl"></i>
+                    </div>
+                    <h4 class="font-black text-lg mb-2">守護健康的提示</h4>
+                    <p class="text-sm font-bold text-slate-600">根據不同敏感族群（氣喘、鼻過敏等）貼心發送溫柔提醒彈窗。</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Interactive Executable Section -->
+    <section id="executable" class="py-20 px-4 bg-cream border-b-4 border-coffee relative">
+        <div class="max-w-5xl mx-auto">
+            
+            <div class="text-center mb-10">
+                <span class="text-3xl md:text-4xl">🚀</span>
+                <h3 class="text-3xl md:text-5xl font-black mt-3">專案執行檔與互動模擬</h3>
+                <p class="text-base font-bold text-slate-500 mt-2">免安裝！直接在此啟動我們用程式碼開發的可愛空氣檢查系統</p>
+                <div class="w-24 h-2 bg-apricot mx-auto mt-4 rounded-full border border-coffee"></div>
+            </div>
+
+            <!-- Launcher Cover Box / Run Project Button -->
+            <div id="launcher-cover" class="bg-white p-8 md:p-12 rounded-3xl border-4 border-coffee shadow-kawaii text-center transition-all duration-500">
+                <div class="max-w-md mx-auto">
+                    <!-- Retro Desktop Icon Mockup -->
+                    <div class="w-32 h-32 mx-auto bg-gradient-to-tr from-peach via-apricot to-skyBlue rounded-3xl border-4 border-coffee shadow-kawaiiSm flex flex-col items-center justify-center mb-6 relative">
+                        <span class="text-5xl">🐶</span>
+                        <div class="absolute bottom-1 right-1 bg-white border border-coffee rounded-md px-1 text-[10px] font-black">
+                            .EXE
+                        </div>
+                    </div>
+                    
+                    <h4 class="text-2xl font-black mb-2">PreOuting_AirChecker.exe</h4>
+                    <p class="text-xs font-bold text-slate-400 mb-6">版本號：v1.2.4-build-2026 | 檔案大小：18.4 MB</p>
+                    
+                    <p class="text-sm font-bold text-slate-600 mb-8 leading-relaxed">
+                        點擊下方按鈕將在網頁沙盒環境中啟動專案「空氣檢查應用程式」主程式。你將可以扮演測試員自由調整環境數值！
+                    </p>
+
+                    <button onclick="launchAppSimulator()" class="w-full py-4 bg-peach text-coffee font-black text-lg rounded-2xl border-4 border-coffee shadow-kawaii hover:translate-x-1 hover:translate-y-1 hover:shadow-kawaiiActive active:translate-y-1.5 transition-all flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-rocket animate-pulse"></i>
+                        <span>雙擊滑鼠 啟動專案執行檔</span>
+                    </button>
+                    
+                    <!-- Fake system requirements -->
+                    <div class="mt-6 flex justify-center space-x-4 text-xs font-bold text-slate-400">
+                        <span><i class="fa-solid fa-display mr-1"></i> 支援響應式視窗</span>
+                        <span><i class="fa-solid fa-microchip mr-1"></i> HTML5 極速運行</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Booting Loader Animation (Hidden initially) -->
+            <div id="boot-loader" class="hidden bg-slate-900 text-emerald-400 p-8 rounded-3xl border-4 border-coffee shadow-kawaii h-[450px] font-mono text-sm relative overflow-hidden">
+                <div class="scanlines absolute inset-0 pointer-events-none z-10"></div>
+                <div class="h-full flex flex-col justify-between relative z-20">
+                    <div>
+                        <p class="text-slate-500">// INITIALIZING CHERISH AIR SYSTEM MOCK EXECUTABLE v1.2.4...</p>
+                        <p class="mt-2">[OK] Loading WebGL Graphic Subsystem...</p>
+                        <p class="mt-1">[OK] Reading Mascot Fluffy Textures (Kawaii-Mode enabled)...</p>
+                        <p class="mt-1">[OK] Loading Weather Decision Tree Database...</p>
+                        <p id="boot-progress-text" class="mt-4 text-yellow-300">正在編譯專案邏輯...</p>
+                    </div>
+                    <div class="w-full bg-slate-800 h-6 rounded-full border border-slate-700 overflow-hidden relative">
+                        <div id="boot-progress-bar" class="bg-gradient-to-r from-emerald-500 to-teal-300 h-full w-[0%] transition-all duration-300"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- The Actual Running Application Simulator (Hidden initially) -->
+            <div id="app-simulator" class="hidden bg-[#FFFDF6] rounded-3xl border-4 border-coffee shadow-kawaii overflow-hidden">
+                
+                <!-- Retro Cute App Window Header -->
+                <div class="bg-coffee text-white px-4 py-3 flex items-center justify-between">
+                    <div class="flex items-center space-x-2">
+                        <span class="text-xl">🐶</span>
+                        <span class="font-black text-sm tracking-wider">出門前的空氣檢查 (模擬系統運行中)</span>
+                    </div>
+                    <!-- Mock Windows Buttons -->
+                    <div class="flex space-x-2">
+                        <div class="w-3 h-3 rounded-full bg-yellow-400 border border-white"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-400 border border-white"></div>
+                        <button onclick="closeAppSimulator()" class="w-5 h-5 rounded-full bg-red-400 border border-white text-[10px] font-black flex items-center justify-center text-slate-900 hover:bg-red-500">✕</button>
+                    </div>
+                </div>
+
+                <!-- Simulation Main Layout -->
+                <div class="grid md:grid-cols-12 gap-0">
+                    
+                    <!-- Left Column: Controller panel (Inputs) -->
+                    <div class="md:col-span-5 p-6 border-b-4 md:border-b-0 md:border-r-4 border-coffee bg-yellow-50/50">
+                        <h5 class="font-black text-lg mb-6 border-b-2 border-coffee pb-2 flex items-center">
+                            <i class="fa-solid fa-sliders mr-2 text-peach"></i> 環境控制台
+                        </h5>
+
+                        <div class="space-y-6">
+                            <!-- Preset Scenarios -->
+                            <div>
+                                <label class="block text-xs font-black text-slate-500 uppercase tracking-wider mb-2">快捷測試場景</label>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <button onclick="setScenario('perfect')" class="bg-mint hover:bg-emerald-200 text-coffee text-xs font-black py-2 px-3 rounded-xl border-2 border-coffee shadow-kawaiiSm active:translate-y-0.5 active:shadow-none transition-all">
+                                        ✨ 完美踏青日
+                                    </button>
+                                    <button onclick="setScenario('smoggy')" class="bg-amber-100 hover:bg-amber-200 text-coffee text-xs font-black py-2 px-3 rounded-xl border-2 border-coffee shadow-kawaiiSm active:translate-y-0.5 active:shadow-none transition-all">
+                                        😷 紫爆沙塵暴
+                                    </button>
+                                    <button onclick="setScenario('rainy')" class="bg-skyBlue hover:bg-blue-200 text-coffee text-xs font-black py-2 px-3 rounded-xl border-2 border-coffee shadow-kawaiiSm active:translate-y-0.5 active:shadow-none transition-all">
+                                        ☔ 梅雨季來襲
+                                    </button>
+                                    <button onclick="setScenario('scorching')" class="bg-[#FFD3D6] hover:bg-red-200 text-coffee text-xs font-black py-2 px-3 rounded-xl border-2 border-coffee shadow-kawaiiSm active:translate-y-0.5 active:shadow-none transition-all">
+                                        🥵 超毒辣艷陽
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- AQI Slider -->
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <label class="text-xs font-black text-slate-500 uppercase tracking-wider">空氣品質指數 (AQI)</label>
+                                    <span id="aqi-badge" class="text-xs font-black px-2 py-0.5 rounded-full border border-coffee bg-emerald-100">良好 (35)</span>
+                                </div>
+                                <input id="aqi-slider" type="range" min="0" max="300" value="35" oninput="updateSimulationValues()" class="w-full h-3 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-coffee">
+                                <div class="flex justify-between text-[10px] font-bold text-slate-400 mt-1">
+                                    <span>0 (超乾淨)</span>
+                                    <span>100 (普通)</span>
+                                    <span>150 (不健康)</span>
+                                    <span>300 (危害)</span>
+                                </div>
+                            </div>
+
+                            <!-- UV Slider -->
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <label class="text-xs font-black text-slate-500 uppercase tracking-wider">紫外線指數 (UV Index)</label>
+                                    <span id="uv-badge" class="text-xs font-black px-2 py-0.5 rounded-full border border-coffee bg-emerald-100">低量級 (2)</span>
+                                </div>
+                                <input id="uv-slider" type="range" min="0" max="15" value="2" oninput="updateSimulationValues()" class="w-full h-3 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-coffee">
+                                <div class="flex justify-between text-[10px] font-bold text-slate-400 mt-1">
+                                    <span>0-2 (微弱)</span>
+                                    <span>6-7 (高量)</span>
+                                    <span>11+ (危險極端)</span>
+                                </div>
+                            </div>
+
+                            <!-- Weather Condition Select -->
+                            <div>
+                                <label class="block text-xs font-black text-slate-500 uppercase tracking-wider mb-2">天氣環境設定</label>
+                                <select id="weather-select" onchange="updateSimulationValues()" class="w-full p-3 bg-white border-2 border-coffee rounded-xl font-bold text-sm shadow-kawaiiSm focus:outline-none">
+                                    <option value="sunny">☀️ 晴朗微風天</option>
+                                    <option value="cloudy">☁️ 陰天多雲</option>
+                                    <option value="rainy">🌧️ 大雨綿綿</option>
+                                    <option value="windy">💨 強風沙塵</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Interactive Mascot Reacting (Outputs) -->
+                    <div class="md:col-span-7 p-6 flex flex-col justify-between">
+                        
+                        <!-- Top State Indicator Bar -->
+                        <div class="bg-white p-4 rounded-2xl border-2 border-coffee shadow-kawaiiSm mb-6">
+                            <h6 class="font-black text-sm text-slate-500 uppercase mb-2">📢 澎澎的即時出行診斷</h6>
+                            <p id="diagnostic-text" class="font-black text-base text-emerald-600 leading-relaxed">
+                                「今天的空氣吸起來甜甜的！紫外線也很溫和，超級適合出門，連口罩都不用帶唷！」
+                            </p>
+                        </div>
+
+                        <!-- Mascot Core Visualization Canvas Area -->
+                        <div class="relative bg-gradient-to-b from-[#BAE1FF] to-[#E8F5E9] h-64 rounded-2xl border-2 border-coffee shadow-kawaiiSm overflow-hidden flex items-center justify-center">
+                            
+                            <!-- Dynamic Weather Effect Overlay inside Simulation -->
+                            <div id="sim-weather-overlay" class="absolute inset-0 pointer-events-none z-10">
+                                <!-- Dynamically populated by JS based on rain/wind -->
+                            </div>
+
+                            <!-- Mascot Wrapper -->
+                            <div class="relative z-20 mascot-bounce flex flex-col items-center">
+                                <!-- Mascot Illustration with dynamic overlays depending on inputs -->
+                                <svg width="150" height="150" viewBox="0 0 100 90" fill="none" class="drop-shadow-md">
+                                    <!-- Base dog body -->
+                                    <ellipse cx="50" cy="55" rx="35" ry="28" fill="white" stroke="#4A3E3D" stroke-width="4"/>
+                                    <!-- Base dog head -->
+                                    <circle cx="50" cy="35" r="22" fill="white" stroke="#4A3E3D" stroke-width="4"/>
+                                    
+                                    <!-- Ears -->
+                                    <ellipse cx="28" cy="25" rx="8" ry="12" fill="#FFC6FF" stroke="#4A3E3D" stroke-width="4"/>
+                                    <ellipse cx="72" cy="25" rx="8" ry="12" fill="#FFC6FF" stroke="#4A3E3D" stroke-width="4"/>
+                                    
+                                    <!-- Dynamic Eyes (changes based on AQI / UV) -->
+                                    <g id="sim-eyes">
+                                        <!-- Normal Cute Eyes -->
+                                        <circle cx="43" cy="32" r="3" fill="#4A3E3D"/>
+                                        <circle cx="57" cy="32" r="3" fill="#4A3E3D"/>
+                                    </g>
+
+                                    <!-- Blush -->
+                                    <ellipse cx="38" cy="38" rx="4" ry="2.5" fill="#FFAAA6"/>
+                                    <ellipse cx="62" cy="38" rx="4" ry="2.5" fill="#FFAAA6"/>
+                                    
+                                    <!-- Nose & Mouth -->
+                                    <polygon points="50,37 47,34 53,34" fill="#4A3E3D"/>
+                                    <g id="sim-mouth">
+                                        <path d="M48,42 Q50,44 52,42" stroke="#4A3E3D" stroke-width="2" stroke-linecap="round"/>
+                                    </g>
+                                    
+                                    <!-- Dog Paws -->
+                                    <circle cx="35" cy="80" r="7" fill="white" stroke="#4A3E3D" stroke-width="3"/>
+                                    <circle cx="65" cy="80" r="7" fill="white" stroke="#4A3E3D" stroke-width="3"/>
+
+                                    <!-- DYNAMIC SVG EQUIPMENTS (Toggled by JS classes) -->
+                                    <!-- 1. Mask (AQI > 100) -->
+                                    <g id="eq-mask" class="hidden">
+                                        <rect x="35" y="32" width="30" height="15" rx="4" fill="#E2F0CB" stroke="#4A3E3D" stroke-width="3"/>
+                                        <path d="M35,35 L28,30" stroke="#4A3E3D" stroke-width="2"/>
+                                        <path d="M65,35 L72,30" stroke="#4A3E3D" stroke-width="2"/>
+                                    </g>
+
+                                    <!-- 2. Sunglasses (UV > 7) -->
+                                    <g id="eq-glasses" class="hidden">
+                                        <rect x="30" y="27" width="16" height="10" rx="3" fill="#4A3E3D" stroke="#4A3E3D" stroke-width="2"/>
+                                        <rect x="54" y="27" width="16" height="10" rx="3" fill="#4A3E3D" stroke="#4A3E3D" stroke-width="2"/>
+                                        <line x1="46" y1="32" x2="54" y2="32" stroke="#4A3E3D" stroke-width="3"/>
+                                    </g>
+
+                                    <!-- 3. Umbrella in Paw (Rainy / UV high) -->
+                                    <g id="eq-umbrella" class="hidden">
+                                        <path d="M12,50 Q12,20 40,20 Q68,20 68,50 Z" fill="#FFC6FF" stroke="#4A3E3D" stroke-width="3"/>
+                                        <line x1="40" y1="20" x2="40" y2="70" stroke="#4A3E3D" stroke-width="3"/>
+                                        <path d="M40,70 Q45,75 50,70" fill="none" stroke="#4A3E3D" stroke-width="3"/>
+                                    </g>
+                                </svg>
+                            </div>
+
+                            <!-- Interactive Equip Badge Indicators inside canvas -->
+                            <div class="absolute bottom-3 left-3 flex flex-wrap gap-1.5 max-w-[80%] z-30">
+                                <span id="badge-mask" class="hidden text-[10px] font-black bg-white border border-coffee px-2 py-0.5 rounded-full shadow-kawaiiSm text-red-500">😷 建議戴口罩</span>
+                                <span id="badge-umbrella" class="hidden text-[10px] font-black bg-white border border-coffee px-2 py-0.5 rounded-full shadow-kawaiiSm text-blue-500">☔ 建議攜帶雨傘</span>
+                                <span id="badge-hat" class="hidden text-[10px] font-black bg-white border border-coffee px-2 py-0.5 rounded-full shadow-kawaiiSm text-amber-600">👒 建議防曬/遮陽帽</span>
+                                <span id="badge-glasses" class="hidden text-[10px] font-black bg-white border border-coffee px-2 py-0.5 rounded-full shadow-kawaiiSm text-purple-600">🕶️ 建議配戴墨鏡</span>
+                            </div>
+
+                            <!-- Simulated Location tag -->
+                            <div class="absolute top-3 right-3 bg-white/80 border-2 border-coffee text-[10px] font-black px-2 py-1 rounded-lg">
+                                📍 模擬測試點：北部學區
+                            </div>
+                        </div>
+
+                        <!-- Footer Simulation Buttons -->
+                        <div class="mt-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+                            <button onclick="downloadMockReport()" class="w-full sm:w-auto px-4 py-2.5 bg-skyBlue text-coffee font-black text-xs rounded-xl border-2 border-coffee shadow-kawaiiSm hover:translate-y-0.5 hover:shadow-none transition-all flex items-center justify-center space-x-2">
+                                <i class="fa-solid fa-file-arrow-down"></i>
+                                <span>導出本日空氣健康報告 (PDF)</span>
+                            </button>
+                            <span class="text-xs font-bold text-slate-400">目前運作狀態: 良好 🟢</span>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Theoretical Core / Data Rules Introduction -->
+    <section class="py-20 px-4 bg-yellow-50/20 border-b-4 border-coffee">
+        <div class="max-w-5xl mx-auto">
+            
+            <div class="text-center mb-16">
+                <span class="text-3xl md:text-4xl">📚</span>
+                <h3 class="text-3xl md:text-5xl font-black mt-3">研究背景與學術原理</h3>
+                <div class="w-24 h-2 bg-peach mx-auto mt-4 rounded-full border border-coffee"></div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Data 1 -->
+                <div class="bg-white p-6 rounded-2xl border-2 border-coffee shadow-kawaiiSm">
+                    <div class="bg-skyBlue p-3 rounded-xl border border-coffee inline-block mb-4">
+                        <span class="font-black text-xs">AEROSOL INDEX</span>
+                    </div>
+                    <h4 class="font-black text-xl mb-3">PM2.5 細懸浮微粒</h4>
+                    <p class="text-sm font-bold text-slate-600 leading-relaxed">
+                        根據環保署空氣品質指標 (AQI)，PM2.5 指數大於 35 μg/m³ 時，敏感體質學生就可能出現過敏、咳嗽。本專案透過演算法偵測，當系統預測 PM2.5 超過臨界值，系統便會即時建議使用者裝備高防護力口罩。
+                    </p>
+                </div>
+
+                <!-- Data 2 -->
+                <div class="bg-white p-6 rounded-2xl border-2 border-coffee shadow-kawaiiSm">
+                    <div class="bg-apricot p-3 rounded-xl border border-coffee inline-block mb-4">
+                        <span class="font-black text-xs">ULTRAVIOLET</span>
+                    </div>
+                    <h4 class="font-black text-xl mb-3">紫外線防護矩陣</h4>
+                    <p class="text-sm font-bold text-slate-600 leading-relaxed">
+                        紫外線指數達 6 (高量級) 以上時，在烈日下曝曬 20 分鐘即有曬傷危險。本專案將紫外線數值拆分為三段式提醒：低段（免防護）、中段（戴遮陽帽、薄外套）、高段（極端危險，必須配戴墨鏡與高防護防曬霜）。
+                    </p>
+                </div>
+
+                <!-- Data 3 -->
+                <div class="bg-white p-6 rounded-2xl border-2 border-coffee shadow-kawaiiSm">
+                    <div class="bg-mint p-3 rounded-xl border border-coffee inline-block mb-4">
+                        <span class="font-black text-xs">DECISION TREE</span>
+                    </div>
+                    <h4 class="font-black text-xl mb-3">氣象交叉決策樹</h4>
+                    <p class="text-sm font-bold text-slate-600 leading-relaxed">
+                        有別於傳統單一數據呈現，專案採用交叉判定邏輯（如：陰天但高 UV 仍需防曬；下雨天降雨機率高時，就算 AQI 良好也需提示攜帶雨具），提升本自主學習專案的實用性與判斷深度。
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="py-20 px-4 bg-[#F5F5FA] border-b-4 border-coffee">
+        <div class="max-w-5xl mx-auto">
+            
+            <div class="text-center mb-16">
+                <span class="text-3xl md:text-4xl">🏫</span>
+                <h3 class="text-3xl md:text-5xl font-black mt-3">專案研發團隊</h3>
+                <p class="text-base font-bold text-slate-500 mt-2">新北市立櫻花高中 114 學年度自學習專案小組</p>
+                <div class="w-24 h-2 bg-mint mx-auto mt-4 rounded-full border border-coffee"></div>
+            </div>
+
+            <!-- Team Members Grid -->
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <!-- Member 1 -->
+                <div class="bg-white p-6 rounded-2xl border-2 border-coffee shadow-kawaiiSm text-center">
+                    <div class="w-24 h-24 mx-auto bg-[#FFD3D6] rounded-full border-2 border-coffee overflow-hidden flex items-center justify-center mb-4 text-3xl">
+                        🧑‍💻
+                    </div>
+                    <h4 class="font-black text-lg">小櫻 (Sakura)</h4>
+                    <span class="inline-block bg-pink-100 text-pink-700 text-xs px-2.5 py-0.5 rounded-full border border-pink-300 font-bold mt-1">
+                        主程式研發 / 算法邏輯
+                    </span>
+                    <p class="text-xs font-bold text-slate-500 mt-3">
+                        「努力把 API 數據串接起來！希望澎澎的動畫邏輯可以讓全校同學都愛上用這個系統！」
+                    </p>
+                </div>
+
+                <!-- Member 2 -->
+                <div class="bg-white p-6 rounded-2xl border-2 border-coffee shadow-kawaiiSm text-center">
+                    <div class="w-24 h-24 mx-auto bg-[#FFEBB7] rounded-full border-2 border-coffee overflow-hidden flex items-center justify-center mb-4 text-3xl">
+                        🎨
+                    </div>
+                    <h4 class="font-black text-lg">阿誠 (Makoto)</h4>
+                    <span class="inline-block bg-yellow-100 text-yellow-700 text-xs px-2.5 py-0.5 rounded-full border border-yellow-300 font-bold mt-1">
+                        視覺美學 / UIUX 插畫
+                    </span>
+                    <p class="text-xs font-bold text-slate-500 mt-3">
+                        「為了畫出最可愛的澎澎跟櫻花落葉背景，整整畫了三個星期！日系配色大法好！」
+                    </p>
+                </div>
+
+                <!-- Member 3 -->
+                <div class="bg-white p-6 rounded-2xl border-2 border-coffee shadow-kawaiiSm text-center">
+                    <div class="w-24 h-24 mx-auto bg-[#BFFCC6] rounded-full border-2 border-coffee overflow-hidden flex items-center justify-center mb-4 text-3xl">
+                        📝
+                    </div>
+                    <h4 class="font-black text-lg">佳佳 (Kaka)</h4>
+                    <span class="inline-block bg-emerald-100 text-emerald-700 text-xs px-2.5 py-0.5 rounded-full border border-emerald-300 font-bold mt-1">
+                        科普撰寫 / 實測報告
+                    </span>
+                    <p class="text-xs font-bold text-slate-500 mt-3">
+                        「負責考究環保署與各國空氣品質判別標準，將生硬法規翻譯成最溫暖的人話！」
+                    </p>
+                </div>
+            </div>
+
+            <!-- Tech Stack Tags -->
+            <div class="bg-white p-6 rounded-2xl border-2 border-coffee shadow-kawaiiSm text-center">
+                <h5 class="font-black text-sm text-slate-500 uppercase tracking-wider mb-4">本專案所使用的技術堆疊 (Tech Stack)</h5>
+                <div class="flex flex-wrap justify-center gap-3 font-bold text-sm">
+                    <span class="bg-skyBlue border border-coffee px-3 py-1 rounded-xl shadow-kawaiiSm">HTML5 & CSS3 Canvas</span>
+                    <span class="bg-[#FFFDF6] border border-coffee px-3 py-1 rounded-xl shadow-kawaiiSm">Vanilla JavaScript ES6</span>
+                    <span class="bg-[#FFC6FF] border border-coffee px-3 py-1 rounded-xl shadow-kawaiiSm">Tailwind Responsive Framework</span>
+                    <span class="bg-[#E2F0CB] border border-coffee px-3 py-1 rounded-xl shadow-kawaiiSm">Vector SVG Illustration</span>
+                    <span class="bg-[#FFDFBA] border border-coffee px-3 py-1 rounded-xl shadow-kawaiiSm">Environmental Protection API Docs</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Cute Footer -->
+    <footer class="bg-coffee text-white py-12 px-4 border-t-4 border-coffee text-center">
+        <div class="max-w-4xl mx-auto space-y-4">
+            <span class="text-4xl">🎒🌸🌾</span>
+            <p class="font-black text-lg">出門前的空氣檢查 · 櫻花高中期末研究小組</p>
+            <p class="text-xs text-stone-400 max-w-md mx-auto leading-relaxed">
+                本系統氣象、空氣指標等數據均為期末專案互動模擬展示，若需獲取最新官方即時氣象，請參考政府官方環境部環境監測網。
+            </p>
+            <div class="pt-6 border-t border-stone-700 text-xs text-stone-500 flex flex-col md:flex-row justify-between items-center gap-4">
+                <span>© 2026 櫻花高中自主學習第3組. 保留所有卡哇伊權利。</span>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:text-peach">隱私條款</a>
+                    <span>•</span>
+                    <a href="#" class="hover:text-peach">開源授權聲明</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // App Simulator Core State Management
+        let bootTimer = null;
+        
+        // Launch Application Animation Function
+        function launchAppSimulator() {
+            const launcherCover = document.getElementById('launcher-cover');
+            const bootLoader = document.getElementById('boot-loader');
+            const appSimulator = document.getElementById('app-simulator');
+            
+            // 1. Hide cover page
+            launcherCover.classList.add('hidden');
+            // 2. Show boot screen
+            bootLoader.classList.remove('hidden');
+            
+            // 3. Fake booting progression
+            let progress = 0;
+            const progressText = document.getElementById('boot-progress-text');
+            const progressBar = document.getElementById('boot-progress-bar');
+            
+            const bootLogs = [
+                "正在加載環境演算法模型...",
+                "正在初始化吉祥物狀態...",
+                "正在渲染 SVG 面具與裝備組件...",
+                "正與學區模擬資料庫進行高速對接...",
+                "編譯成功！正在啟動專案視窗..."
+            ];
+
+            bootTimer = setInterval(() => {
+                progress += Math.floor(Math.random() * 15) + 5;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(bootTimer);
+                    setTimeout(() => {
+                        // Boot complete, show the actual simulation application
+                        bootLoader.classList.add('hidden');
+                        appSimulator.classList.remove('hidden');
+                        
+                        // Initial triggering computation
+                        updateSimulationValues();
+                    }, 500);
+                }
+                
+                progressBar.style.width = `${progress}%`;
+                const logIndex = Math.min(Math.floor(progress / 20), bootLogs.length - 1);
+                progressText.innerHTML = `${bootLogs[logIndex]} (${progress}%)`;
+            }, 150);
+        }
+
+        // Close app and return to cover
+        function closeAppSimulator() {
+            document.getElementById('app-simulator').classList.add('hidden');
+            document.getElementById('boot-loader').classList.add('hidden');
+            document.getElementById('launcher-cover').classList.remove('hidden');
+            if (bootTimer) clearInterval(bootTimer);
+        }
+
+        // Scenario Preset Quick Toggles
+        function setScenario(type) {
+            const aqiSlider = document.getElementById('aqi-slider');
+            const uvSlider = document.getElementById('uv-slider');
+            const weatherSelect = document.getElementById('weather-select');
+
+            if (type === 'perfect') {
+                aqiSlider.value = 15;
+                uvSlider.value = 2;
+                weatherSelect.value = 'sunny';
+            } else if (type === 'smoggy') {
+                aqiSlider.value = 185;
+                uvSlider.value = 3;
+                weatherSelect.value = 'windy';
+            } else if (type === 'rainy') {
+                aqiSlider.value = 40;
+                uvSlider.value = 1;
+                weatherSelect.value = 'rainy';
+            } else if (type === 'scorching') {
+                aqiSlider.value = 20;
+                uvSlider.value = 12;
+                weatherSelect.value = 'sunny';
+            }
+
+            updateSimulationValues();
+        }
+
+        // Main Decision Logic based on Sliders and Weather Select
+        function updateSimulationValues() {
+            const aqiValue = parseInt(document.getElementById('aqi-slider').value);
+            const uvValue = parseInt(document.getElementById('uv-slider').value);
+            const weatherValue = document.getElementById('weather-select').value;
+
+            // Badges Element
+            const aqiBadge = document.getElementById('aqi-badge');
+            const uvBadge = document.getElementById('uv-badge');
+            
+            // Visual Overlays
+            const simWeatherOverlay = document.getElementById('sim-weather-overlay');
+
+            // Mascot SVG parts to toggled
+            const eqMask = document.getElementById('eq-mask');
+            const eqGlasses = document.getElementById('eq-glasses');
+            const eqUmbrella = document.getElementById('eq-umbrella');
+            const simEyes = document.getElementById('sim-eyes');
+            const simMouth = document.getElementById('sim-mouth');
+
+            // Interactive Badge Badges
+            const badgeMask = document.getElementById('badge-mask');
+            const badgeUmbrella = document.getElementById('badge-umbrella');
+            const badgeHat = document.getElementById('badge-hat');
+            const badgeGlasses = document.getElementById('badge-glasses');
+
+            // Text diagnostic
+            const diagText = document.getElementById('diagnostic-text');
+
+            // Update Badges Content & Color based on values
+            // 1. AQI Classification
+            let aqiCategory = "";
+            aqiBadge.className = "text-xs font-black px-2 py-0.5 rounded-full border border-coffee ";
+            if (aqiValue <= 50) {
+                aqiCategory = "良好";
+                aqiBadge.classList.add("bg-emerald-100");
+            } else if (aqiValue <= 100) {
+                aqiCategory = "普通";
+                aqiBadge.classList.add("bg-yellow-100");
+            } else if (aqiValue <= 150) {
+                aqiCategory = "不健康(對敏感族群)";
+                aqiBadge.classList.add("bg-orange-100");
+            } else if (aqiValue <= 200) {
+                aqiCategory = "不健康";
+                aqiBadge.classList.add("bg-red-100");
+            } else {
+                aqiCategory = "非常危險(紫爆)";
+                aqiBadge.classList.add("bg-purple-100");
+            }
+            aqiBadge.innerText = `${aqiCategory} (${aqiValue})`;
+
+            // 2. UV Classification
+            let uvCategory = "";
+            uvBadge.className = "text-xs font-black px-2 py-0.5 rounded-full border border-coffee ";
+            if (uvValue <= 2) {
+                uvCategory = "低量級";
+                uvBadge.classList.add("bg-emerald-100");
+            } else if (uvValue <= 5) {
+                uvCategory = "中量級";
+                uvBadge.classList.add("bg-yellow-100");
+            } else if (uvValue <= 7) {
+                uvCategory = "高量級";
+                uvBadge.classList.add("bg-orange-100");
+            } else if (uvValue <= 10) {
+                uvCategory = "非常高";
+                uvBadge.classList.add("bg-red-100");
+            } else {
+                uvCategory = "極強烈級";
+                uvBadge.classList.add("bg-purple-100");
+            }
+            uvBadge.innerText = `${uvCategory} (${uvValue})`;
+
+            // Render Weather Overlays Inside the Sim
+            simWeatherOverlay.innerHTML = '';
+            if (weatherValue === 'rainy') {
+                // Add rain lines inside simulation
+                for (let i = 0; i < 6; i++) {
+                    const line = document.createElement('div');
+                    line.className = "absolute bg-sky-300 w-[2px] h-8 rounded opacity-70 animate-bounce";
+                    line.style.left = `${15 + i * 16}%`;
+                    line.style.top = `${Math.random() * 40}%`;
+                    line.style.transform = "rotate(15deg)";
+                    simWeatherOverlay.appendChild(line);
+                }
+            } else if (weatherValue === 'windy') {
+                // Add wind curves
+                simWeatherOverlay.innerHTML = `
+                    <div class="absolute top-10 left-4 text-slate-400 opacity-40 text-xl animate-pulse">💨</div>
+                    <div class="absolute top-32 right-10 text-slate-400 opacity-40 text-xl animate-pulse">💨</div>
+                `;
+            }
+
+            // DECISION ENGINE: Equipping logic and texts
+            let diagnosticMsg = "";
+            let maskNeeded = false;
+            let glassesNeeded = false;
+            let umbrellaNeeded = false;
+            let hatNeeded = false;
+
+            // AQI Logic
+            if (aqiValue > 100) {
+                maskNeeded = true;
+            }
+
+            // UV Logic
+            if (uvValue >= 6) {
+                hatNeeded = true;
+            }
+            if (uvValue >= 9) {
+                glassesNeeded = true;
+            }
+
+            // Weather Logic
+            if (weatherValue === 'rainy') {
+                umbrellaNeeded = true;
+            }
+
+            // Complex Joint Recommendation Texts
+            if (aqiValue > 150 && weatherValue === 'windy') {
+                diagnosticMsg = "🚨【警告】強風伴隨嚴重的塵暴襲來！空氣品質極度差。澎澎強烈懇求你今天務必戴上口罩，減少戶外停留。";
+                diagText.className = "font-black text-sm md:text-base text-red-500 leading-relaxed";
+            } else if (weatherValue === 'rainy' && uvValue >= 6) {
+                diagnosticMsg = "🌦️【雨中烈日】這是奇妙的太陽雨天氣呢！雖然在下雨，但紫外線能量依然存在。雨傘必帶，防曬和透氣防曬服也別漏掉唷！";
+                diagText.className = "font-black text-sm md:text-base text-amber-600 leading-relaxed";
+            } else if (weatherValue === 'rainy') {
+                diagnosticMsg = "🌧️【陰雨漫漫】今天會是多雨的日子。請務必攜帶折疊傘或雨衣出門。空氣因為雨水洗刷變得十分乾淨，深深吸一口氣放鬆一下吧！";
+                diagText.className = "font-black text-sm md:text-base text-blue-600 leading-relaxed";
+            } else if (uvValue >= 11) {
+                diagnosticMsg = "🥵【極端烈日】紫外線指數紫爆！今天在室外只要10分鐘就會受傷。墨鏡、遮陽帽必備！別忘了多補充水分避免中暑！";
+                diagText.className = "font-black text-sm md:text-base text-red-500 leading-relaxed";
+            } else if (aqiValue > 100) {
+                diagnosticMsg = "😷【過敏警報】空氣細懸浮微粒偏高。雖然是大晴天，但為了保護呼吸道與鼻黏膜，出門上學記得帶上口罩再出發哦。";
+                diagText.className = "font-black text-sm md:text-base text-orange-600 leading-relaxed";
+            } else {
+                diagnosticMsg = "🌸【踏青完美日】哇！今天空氣極佳、紫外線微弱。快穿上你最漂亮的衣服去學校或公園散散步吧，澎澎祝你今天有美好的一天！";
+                diagText.className = "font-black text-sm md:text-base text-emerald-600 leading-relaxed";
+            }
+
+            diagText.innerText = diagnosticMsg;
+
+            // Toggle Visual Equipment SVG Classes on Mascot
+            if (maskNeeded) {
+                eqMask.classList.remove('hidden');
+                badgeMask.classList.remove('hidden');
+            } else {
+                eqMask.classList.add('hidden');
+                badgeMask.classList.add('hidden');
+            }
+
+            if (glassesNeeded) {
+                eqGlasses.classList.remove('hidden');
+                badgeGlasses.classList.remove('hidden');
+            } else {
+                eqGlasses.classList.add('hidden');
+                badgeGlasses.classList.add('hidden');
+            }
+
+            if (umbrellaNeeded) {
+                eqUmbrella.classList.remove('hidden');
+                badgeUmbrella.classList.remove('hidden');
+            } else {
+                eqUmbrella.classList.add('hidden');
+                badgeUmbrella.classList.add('hidden');
+            }
+
+            if (hatNeeded) {
+                badgeHat.classList.remove('hidden');
+            } else {
+                badgeHat.classList.add('hidden');
+            }
+
+            // Change Mascot expression based on weather & AQI quality
+            if (aqiValue > 150) {
+                // Sad eyes
+                simEyes.innerHTML = `
+                    <path d="M40,34 L46,31" stroke="#4A3E3D" stroke-width="3" stroke-linecap="round"/>
+                    <path d="M60,34 L54,31" stroke="#4A3E3D" stroke-width="3" stroke-linecap="round"/>
+                `;
+                simMouth.innerHTML = `<path d="M46,43 Q50,39 54,43" stroke="#4A3E3D" stroke-width="2.5" stroke-linecap="round"/>`;
+            } else if (weatherValue === 'rainy') {
+                // Happy/Closed Eyes
+                simEyes.innerHTML = `
+                    <path d="M40,32 Q43,35 46,32" stroke="#4A3E3D" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                    <path d="M54,32 Q57,35 60,32" stroke="#4A3E3D" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                `;
+                simMouth.innerHTML = `<path d="M48,41 Q50,43 52,41" stroke="#4A3E3D" stroke-width="2" stroke-linecap="round"/>`;
+            } else {
+                // Normal happy face
+                simEyes.innerHTML = `
+                    <circle cx="43" cy="32" r="3" fill="#4A3E3D"/>
+                    <circle cx="57" cy="32" r="3" fill="#4A3E3D"/>
+                `;
+                simMouth.innerHTML = `<path d="M47,41 Q50,45 53,41" stroke="#4A3E3D" stroke-width="2" stroke-linecap="round" fill="none"/>`;
+            }
+        }
+
+        // Mock download report functionality
+        function downloadMockReport() {
+            const aqiValue = document.getElementById('aqi-slider').value;
+            const uvValue = document.getElementById('uv-slider').value;
+            
+            // Generate simple custom text file simulated download
+            const reportContent = `出門前空氣檢查成果發表 - 診斷報告\n==================================\n報告時間: 2026/05/18\n\n[本日實測參數]\n- 空氣品質指數 (AQI): ${aqiValue}\n- 紫外線強度: ${uvValue}\n- 專案研發團隊: 櫻花高中自主學習第3組\n\n[醫學提示]\n長期暴露於低品質空氣或極端紫外線下可能造成不可逆的健康危害。請維持良好的通勤與防曬習慣。\n\n感謝您使用本模擬執行檔！`;
+            
+            // Use fallback copy and feedback message box instead of alert()
+            const element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(reportContent));
+            element.setAttribute('download', "PreOuting_AirCheck_Report.txt");
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+
+            // Create a cute toast overlay alert
+            const toast = document.createElement('div');
+            toast.className = "fixed bottom-5 left-1/2 transform -translate-x-1/2 bg-coffee text-white px-6 py-3 rounded-full font-black border-2 border-white shadow-lg text-sm z-[100] animate-bounce";
+            toast.innerText = "🌸 本地診斷報告檔案已順利產生並導出！";
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'transition-opacity', 'duration-500');
+                setTimeout(() => toast.remove(), 500);
+            }, 3000);
+        }
+
+        // Smooth Leaf Generation effect to enhance background
+        window.onload = function() {
+            // Initiate the simulator configuration on load
+            updateSimulationValues();
+        }
+    </script>
+</body>
+</html>
